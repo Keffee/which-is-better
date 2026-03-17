@@ -1,6 +1,6 @@
-# Paper 1 Main Experiment 4B Release
+# Readme
 
-This repository is the anonymous code release for the **Paper 1 main experiment** built around the `Qwen3.5-4B` line.
+This repository is the anonymous code release for the **Which is Better: A Selective Recommendation Correction Framework via Case-Conditioned Challenger Routing** built around the `Qwen3.5-4B` line.
 
 It keeps only the method-critical path needed to understand and reproduce the accepted 4B results on:
 
