@@ -1,4 +1,4 @@
-# Readme
+# Which is Better: A Selective Recommendation Correction Framework via Case-Conditioned Challenger Routing
 
 This repository is the anonymous code release for the **Which is Better: A Selective Recommendation Correction Framework via Case-Conditioned Challenger Routing** built around the `Qwen3.5-4B` line.
 
