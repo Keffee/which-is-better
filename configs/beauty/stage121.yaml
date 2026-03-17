@@ -1,0 +1,35 @@
+meta:
+  experiment_name: beauty_4b_stage121
+paths:
+  cache_dir: ../../data/cache/beauty/sft_best_full
+  graph_dir: ../../outputs/beauty/stage19
+  data_dir: ../../outputs/beauty/stage121/data
+  results_dir: ../../outputs/beauty/stage121/results
+  logs_dir: ../../outputs/beauty/stage121/logs
+  jobs_dir: ../../outputs/beauty/stage121/jobs
+training:
+  seed: 42
+  batch_size: 256
+  lr: 0.001
+  weight_decay: 0.0001
+  num_epochs: 30
+  early_stop_patience: 6
+  hidden_dim: 128
+  dropout: 0.1
+  alpha_fixed: 0.0
+  negative_quantile: 0.97
+  challenger_source: workflow_proxy
+  policy_type: negative_quantile
+  alpha_grid: [0.0, 0.02, 0.05, 0.08, 0.12, 0.15]
+  num_alpha_bins: 6
+  confidence_threshold: 0.70
+  feature_mode: full
+variants:
+  - name: fixed_control
+    mode: fixed
+  - name: oracle_best_alpha_bucket
+    mode: oracle
+  - name: predicted_main
+    mode: gated
+data:
+  sample_trace_limit: 300

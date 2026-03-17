@@ -1,0 +1,25 @@
+paths:
+  source_train_path: ../../data/processed/beauty/train.jsonl
+  source_val_path: ../../data/processed/beauty/val.jsonl
+  source_test_path: ../../data/processed/beauty/test.jsonl
+  candidate17_data_dir: ../../outputs/beauty/stage17
+  item_titles_path: ../../data/processed/beauty/item_texts.json
+  data_dir: ../../outputs/beauty/stage19
+  results_dir: ../../outputs/beauty/stage19/results
+  logs_dir: ../../outputs/beauty/stage19/logs
+  jobs_dir: ../../outputs/beauty/stage19/jobs
+data:
+  sample_trace_limit: 300
+  recent_window: 3
+  stable_positive_threshold: 4
+  dislike_threshold: 2
+  affinity_min_repeat: 2
+training:
+  seed: 42
+  batch_size: 256
+  lr: 0.001
+  weight_decay: 0.0001
+  num_epochs: 20
+  early_stop_patience: 4
+  hidden_dim: 64
+  dropout: 0.1

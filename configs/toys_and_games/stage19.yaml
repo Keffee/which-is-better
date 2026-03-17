@@ -1,0 +1,44 @@
+paths:
+  source_train_path: ../../data/processed/toys_and_games/train.jsonl
+  source_val_path: ../../data/processed/toys_and_games/val.jsonl
+  source_test_path: ../../data/processed/toys_and_games/test.jsonl
+  candidate17_data_dir: ../../outputs/toys_and_games/stage17
+  item_titles_path: ../../data/processed/toys_and_games/item_texts.json
+  data_dir: ../../outputs/toys_and_games/stage19
+  results_dir: ../../outputs/toys_and_games/stage19/results
+  logs_dir: ../../outputs/toys_and_games/stage19/logs
+  jobs_dir: ../../outputs/toys_and_games/stage19/jobs
+data:
+  sample_trace_limit: 200
+  recent_window: 3
+  stable_positive_threshold: 4
+  dislike_threshold: 2
+  affinity_min_repeat: 2
+training:
+  seed: 42
+  batch_size: 256
+  lr: 0.0005
+  weight_decay: 0.0001
+  num_epochs: 30
+  early_stop_patience: 6
+  hidden_dim: 128
+  dropout: 0.05
+variants:
+  - name: hybrid_stage1_control
+    mode: control
+    output_prefix: toys_4b_memory_graph_stage1_control
+  - name: typed_slots_only
+    mode: typed
+    output_prefix: toys_4b_memory_graph_typed_slots
+  - name: coarse_to_fine_memory
+    mode: coarse_to_fine
+    output_prefix: toys_4b_memory_graph_coarse_to_fine
+  - name: adaptive_memory_type_selector
+    mode: adaptive
+    output_prefix: toys_4b_memory_graph_adaptive_selector
+runtime:
+  allowed_gpus: ""
+  poll_seconds: 15
+  memory_threshold_mb: 1500
+  util_threshold: 15
+  max_parallel_gpus: 1

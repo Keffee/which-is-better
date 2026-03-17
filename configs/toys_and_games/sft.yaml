@@ -1,0 +1,44 @@
+paths:
+  base_model_path: models/Qwen3.5-4B
+  data_dir: data/processed/toys_and_games
+  item_titles_path: data/processed/toys_and_games/item_texts.json
+  cache_dir: outputs/toys_and_games/sft/cache
+  output_dir: outputs/toys_and_games/sft/outputs/qwen35_4b_itemtext_sft
+  logging_dir: outputs/toys_and_games/sft/logs/qwen35_4b_itemtext_sft
+  results_dir: outputs/toys_and_games/sft/results
+training:
+  seed: 42
+  max_length: 512
+  max_train_samples: 24000
+  max_eval_samples: 512
+  preprocess_num_proc: 1
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 2
+  gradient_accumulation_steps: 8
+  num_train_epochs: 1
+  max_steps: 160
+  learning_rate: 1.0e-05
+  weight_decay: 0.01
+  warmup_ratio: 0.05
+  lr_scheduler_type: cosine
+  logging_steps: 10
+  eval_steps: 160
+  save_steps: 160
+  save_total_limit: 1
+  dataloader_num_workers: 0
+  gradient_checkpointing: true
+  bf16: true
+  fp16: false
+  tf32: true
+  optimizer: adamw_torch_fused
+  attn_implementation: sdpa
+  auto_find_batch_size: false
+  early_stopping_patience: 2
+  resume_from_checkpoint: null
+  lora:
+    use_lora: true
+    lora_r: 16
+    lora_alpha: 32
+    lora_dropout: 0.05
+    lora_bias: none
+    task_type: CAUSAL_LM

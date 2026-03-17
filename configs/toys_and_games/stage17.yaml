@@ -1,0 +1,34 @@
+paths:
+  raw_data_dir: ../../data/processed/toys_and_games
+  aligned_cache_dir: ../../data/cache/toys_and_games/sft_best_full
+  item_titles_path: ../../data/processed/toys_and_games/item_texts.json
+  data_dir: ../../outputs/toys_and_games/stage17
+  cache_dir: ../../outputs/toys_and_games/stage17/cache
+  results_dir: ../../outputs/toys_and_games/stage17/results
+  logs_dir: ../../outputs/toys_and_games/stage17/logs
+  jobs_dir: ../../outputs/toys_and_games/stage17/jobs
+data:
+  top_k_candidates: 20
+  history_recent_k: 5
+  positive_rating_threshold: 4
+  dense_weight_hybrid: 0.75
+  lexical_weight_hybrid: 0.25
+  lexical_word_weight: 0.6
+  lexical_char_weight: 0.4
+  lexical_batch_size: 256
+  sample_trace_limit: 300
+training:
+  seed: 42
+  batch_size: 256
+  lr: 0.001
+  weight_decay: 0.0001
+  num_epochs: 20
+  early_stop_patience: 4
+  hidden_dim: 64
+  dropout: 0.1
+  pairwise_margin: 0.2
+  positive_bce_weight: 6.0
+variants:
+  - name: hybrid_stage1_control
+    mode: control
+    output_prefix: toys_4b_reranker_hybrid_stage1_control

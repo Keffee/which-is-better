@@ -1,0 +1,45 @@
+paths:
+  source_train_path: ../../data/processed/yelp/train.jsonl
+  source_val_path: ../../data/processed/yelp/val.jsonl
+  source_test_path: ../../data/processed/yelp/test.jsonl
+  candidate17_data_dir: ../../outputs/yelp/stage17
+  item_titles_path: ../../data/processed/yelp/item_texts.json
+  data_dir: ../../outputs/yelp/stage19
+  results_dir: ../../outputs/yelp/stage103/results
+  logs_dir: ../../outputs/yelp/stage103/logs
+  jobs_dir: ../../outputs/yelp/stage103/jobs
+data:
+  sample_trace_limit: 300
+  recent_window: 3
+  stable_positive_threshold: 4
+  dislike_threshold: 2
+  affinity_min_repeat: 2
+training:
+  seed: 42
+  batch_size: 256
+  lr: 0.0005
+  weight_decay: 0.0001
+  num_epochs: 30
+  early_stop_patience: 6
+  hidden_dim: 128
+  dropout: 0.05
+  topk_weight: 0.0
+  topk_margin: 0.0
+  topk_count: 3
+variants:
+  - name: conflict_calibrated_memory_head_local
+    mode: conflict_calibrated
+    output_prefix: conflict_calibrated_memory_head_local
+  - name: conflict_calibrated_memory_head_local_retune_a
+    mode: conflict_calibrated
+    output_prefix: conflict_calibrated_memory_head_local_retune_a
+    training_overrides:
+      lr: 0.0003
+      hidden_dim: 160
+      dropout: 0.05
+runtime:
+  allowed_gpus: ""
+  poll_seconds: 15
+  memory_threshold_mb: 1500
+  util_threshold: 15
+  max_parallel_gpus: 1
